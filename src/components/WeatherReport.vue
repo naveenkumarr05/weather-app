@@ -1,14 +1,15 @@
 <template>
-<div>
-WeatherReport
-</div>
+  <div class="weather-report">WeatherReport</div>
 </template>
 
 <script>
 export default {
-    name: 'WeatherReport'
-}
+  name: "WeatherReport",
+};
 </script>
 
 <style>
+.weather-report {
+  margin-top: 2rem !important;
+}
 </style>
