@@ -1,7 +1,9 @@
 <template>
   <div class="main">
     <button class="btn" @click="getCurrentWeather(true)">CURRENT</button>
-    <button class="btn" @click="getSevenDaysForecast()">7 DAY FORECAST</button>
+    <button class="btn" @click="getSevenDaysForecastReport(true)">
+      7 DAYS FORECAST
+    </button>
   </div>
 </template>
 
@@ -14,18 +16,32 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters("weatherForecast", ["currentWeatherReport"]),
+    ...mapGetters("weatherForecast", ["cityWeatherReport"]),
   },
   methods: {
     ...mapActions({
       getCurrentWeatherReport: "weatherForecast/getCurrentWeatherReport",
+      getSevenDaysForecast: "weatherForecast/getSevenDaysForecast",
     }),
     getCurrentWeather(payload) {
       this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", payload);
+      this.$store.commit(
+        "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
+        false
+      );
     },
-    getSevenDaysForecast() {
-      
-    }
+    getSevenDaysForecastReport(payload) {
+      this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", false);
+      this.$store.commit(
+        "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
+        payload
+      );
+      let coordinates = {
+        lat: this.cityWeatherReport.coord.lat,
+        lon: this.cityWeatherReport.coord.lon,
+      };
+      this.getSevenDaysForecast(coordinates);
+    },
   },
 };
 </script>

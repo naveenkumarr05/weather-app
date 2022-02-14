@@ -50,7 +50,6 @@ export default {
         alert("Enter valid city name");
       }
       let data = await this.getWeatherInfoByCity(this.searchCity);
-      console.log('CityData', data);
       if (data && data.cod == "200") {
         this.weatherReport = true;
       } else {
@@ -60,6 +59,8 @@ export default {
     validateField() {
       this.weatherReport = false;
       this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", false);
+      this.$store.commit(
+        "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT", false);
     },
   },
 };
