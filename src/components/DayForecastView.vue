@@ -1,13 +1,32 @@
 <template>
   <div class="main">
-    <button class="btn">CURRENT</button>
-    <button class="btn">7 DAY FORECAST</button>
+    <button class="btn" @click="getCurrentWeather(true)">CURRENT</button>
+    <button class="btn" @click="getSevenDaysForecast()">7 DAY FORECAST</button>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "DayForecastView",
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters("weatherForecast", ["currentWeatherReport"]),
+  },
+  methods: {
+    ...mapActions({
+      getCurrentWeatherReport: "weatherForecast/getCurrentWeatherReport",
+    }),
+    getCurrentWeather(payload) {
+      this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", payload);
+    },
+    getSevenDaysForecast() {
+      
+    }
+  },
 };
 </script>
 

@@ -6,38 +6,60 @@
           placeholder="Search Location"
           type="search"
           v-model="searchCity"
+          @input="validateField()"
         />
         <button class="search-btn" type="submit">
           <i class="fas fa-search"></i>
         </button>
       </div>
     </form>
+    <DayForecastView />
+    <div v-if="weatherReport">
+      <WeatherReport />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import DayForecastView from "./DayForecastView.vue";
+import WeatherReport from "./WeatherReport.vue";
 export default {
   name: "SearchField",
+  components: {
+    DayForecastView,
+    WeatherReport,
+  },
   data() {
     return {
       searchCity: "",
+      weatherReport: false,
     };
   },
   computed: {
-      ...mapGetters("weatherForecast",["cityWeatherReport"])
+    ...mapGetters("weatherForecast", ["cityWeatherReport"]),
   },
   methods: {
     ...mapActions({
-      getWeatherInfo: "weatherForecast/getWeatherInfo",
+      getWeatherInfoByCity: "weatherForecast/getWeatherInfoByCity",
     }),
     async getCityWeatherReport(event) {
       event.preventDefault();
       const cityValid = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/.test(this.searchCity);
       if (!cityValid) {
-        alert("Entered city invalid");
+        alert("Enter valid city name");
       }
-      let data = await this.getWeatherInfo(this.searchCity);
+      let data = await this.getWeatherInfoByCity(this.searchCity);
+      console.log('CityData', data);
+      if (data && data.cod == "200") {
+        this.weatherReport = true;
+      } else {
+        this.weatherReport = false;
+      }
+    },
+    validateField() {
+      this.weatherReport = false;
+      this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", false);
     },
   },
 };
