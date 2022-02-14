@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Home from './views/Home.vue'
+import Home from './views/Home.vue';
 
 export default {
   name: 'App',
@@ -16,6 +16,7 @@ export default {
 </script>
 
 <style>
+@import './assets/style.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

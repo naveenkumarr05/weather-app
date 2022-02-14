@@ -1,0 +1,15 @@
+@media (min-width: 768px) {  
+    input{
+        width: 60%;
+    }
+    .forcast {
+        padding: 10%;
+    }
+}
+
+@media (min-width: 1000px) {
+    input {
+        width: 60%;
+    }
+}
+ 

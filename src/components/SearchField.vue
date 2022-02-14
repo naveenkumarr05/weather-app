@@ -66,9 +66,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 input {
-  width: 50%;
   background: #fff;
   color: #525865;
   border-radius: 4px;
@@ -98,5 +97,21 @@ body {
   border: none;
   background: none;
   padding: 12px 12px;
+}
+@media screen and (max-width: 992px) {
+  body {
+    background-color: blue;
+    color: white;
+  }
+  input {
+      width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    background-color: olive;
+    color: white;
+  }
 }
 </style>
