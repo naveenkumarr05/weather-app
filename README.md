@@ -25,4 +25,5 @@ npm run lint
 2. It will display city and country name
 3. Click on Current button for get current weather report
 4. Click on 7 days forecast button to see forecast report.
+5. Click on cityName on only Current Tab then popup will be displayed which shows city name and sunrise time
 

@@ -4,7 +4,8 @@ let InitialState = {
     cityWeatherReport: '',
     currentWeatherReport: null,
     sevenDaysWeatherReport: '',
-    setSevenDaysForecast: ''
+    setSevenDaysForecast: '',
+    showPopup: false
 }
 
 export default {
@@ -22,6 +23,9 @@ export default {
         },
         setSevenDaysForecast: (state) => {
             return state.setSevenDaysForecast;
+        },
+        showPopup:(state) => {
+            return state.showPopup;
         }
     },
     mutations: {
@@ -36,6 +40,9 @@ export default {
         },
         SET_SEVEN_DAYS_FORECAST_REPORT: (state, payload) => {
             state.setSevenDaysForecast = payload;
+        },
+        SET_SHOW_POPUP: (state, payload) => {
+            state.showPopup = payload;
         }
     },
     actions: {

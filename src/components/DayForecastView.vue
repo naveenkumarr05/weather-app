@@ -28,6 +28,7 @@ export default {
         alert('Please Enter city to search')
         return;
       }
+      this.$store.commit("weatherForecast/SET_SHOW_POPUP", true);
       this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", payload);
       this.$store.commit(
         "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
@@ -40,6 +41,7 @@ export default {
         return;
       }
       this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", false);
+      this.$store.commit("weatherForecast/SET_SHOW_POPUP", false);
       this.$store.commit(
         "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
         payload
