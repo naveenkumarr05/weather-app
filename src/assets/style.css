@@ -1,15 +1,32 @@
 @media (min-width: 768px) {  
     input{
-        width: 60%;
+        width: 100%;
     }
-    .forcast {
-        padding: 10%;
+    .main {
+        width: auto;
+    }
+    .row {
+        margin: 0;
+    }
+}
+@media (min-width: 360px) {  
+    input{
+        width: 100%;
+    }
+    .main {
+        width: auto;
+    }
+    .row {
+        margin: 0;
     }
 }
 
 @media (min-width: 1000px) {
     input {
         width: 60%;
+    }
+    .main {
+        width: auto;
     }
 }
  

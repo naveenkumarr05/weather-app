@@ -7,10 +7,11 @@
           type="search"
           v-model="searchCity"
           @input="validateField()"
-        />
-        <button class="search-btn" type="submit">
-          <i class="fas fa-search"></i>
-        </button>
+        /><span class="icon-class">
+          <button class="search-btn" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
       </div>
     </form>
     <DayForecastView />
@@ -60,7 +61,9 @@ export default {
       this.weatherReport = false;
       this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", false);
       this.$store.commit(
-        "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT", false);
+        "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
+        false
+      );
     },
   },
 };
@@ -77,7 +80,7 @@ input {
   font-size: 1em;
   line-height: 1.45;
   outline: none;
-  padding: 0.6em 1.45em 0.7em;
+  padding: 0.6em 2em 0.7em;
 }
 input:hover {
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
@@ -98,20 +101,9 @@ body {
   background: none;
   padding: 12px 12px;
 }
-@media screen and (max-width: 992px) {
-  body {
-    background-color: blue;
-    color: white;
-  }
+@media (max-width: 360px) {
   input {
-      width: 50%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  body {
-    background-color: olive;
-    color: white;
+    width: -webkit-fill-available;
   }
 }
 </style>

@@ -62,7 +62,10 @@ export default {
 }
 .row {
   display: flex;
-  margin-left: 15rem;
-  margin-right: 15rem;
+}
+@media (max-width: 360px) {
+  .row {
+    display: inline;
+  }
 }
 </style>

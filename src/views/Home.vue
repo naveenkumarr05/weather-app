@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Weather Forecast</h2>
     <SearchField/>
   </div>
 </template>

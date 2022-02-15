@@ -24,6 +24,10 @@ export default {
       getSevenDaysForecast: "weatherForecast/getSevenDaysForecast",
     }),
     getCurrentWeather(payload) {
+      if(this.cityWeatherReport == '') {
+        alert('Please Enter city to search')
+        return;
+      }
       this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", payload);
       this.$store.commit(
         "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
@@ -31,6 +35,10 @@ export default {
       );
     },
     getSevenDaysForecastReport(payload) {
+      if(this.cityWeatherReport == '') {
+        alert('Please Enter city to search')
+        return;
+      }
       this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", false);
       this.$store.commit(
         "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
