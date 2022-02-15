@@ -20,5 +20,9 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Steps to produce output:
+1. Enter any city in search field (ex-london, ex-new york)
+2. It will display city and country name
+3. click on Current button for get current weather report
+4. click on 7 days forecast button to see forecast report.
+
