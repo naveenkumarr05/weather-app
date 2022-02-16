@@ -16,7 +16,7 @@ export default {
         isCurrentWeatherReport: (state) => state.isCurrentWeatherReport,
         sevenDaysWeatherReport: (state) => state.sevenDaysWeatherReport,
         setSevenDaysForecast: (state) => state.setSevenDaysForecast,
-        showPopup:(state) => state.showPopup
+        showPopup: (state) => state.showPopup
     },
     mutations: {
         SET_CITY_WEATHER_REPORT: (state, data) => {
@@ -38,26 +38,42 @@ export default {
     actions: {
         getWeatherInfoByCity: ({ commit }, city) => {
             return new Promise((resolve, reject) => {
-                weatherService.getWeatherInfoByCity(city).then(async (data) => {
-                    if (data && data.cod == '200') {
-                        commit('SET_CITY_WEATHER_REPORT', data);
-                        resolve(data);
+                try {
+                    if (city) {
+                        weatherService.getWeatherInfoByCity(city).then((data) => {
+                            if (data && data.cod == '200') {
+                                commit('SET_CITY_WEATHER_REPORT', data);
+                                resolve(data);
+                            }
+                        }).catch((err) => {
+                            reject(err)
+                        });
                     } else {
-                        reject("Bad request");
+                        reject('Failed while fetching current weather');
                     }
-                })
+                } catch (error) {
+                    reject(error)
+                }
             })
         },
         getSevenDaysForecast: ({ commit }, data) => {
             return new Promise((resolve, reject) => {
-                weatherService.getSevenDaysForecast(data).then(async (data) => {
+                try {
                     if (data) {
-                        commit('SET_SEVEN_DAYS_FORECAST', data);
-                        resolve(data);
+                        weatherService.getSevenDaysForecast(data).then((result) => {
+                            if (result) {
+                                commit('SET_SEVEN_DAYS_FORECAST', result);
+                                resolve(result);
+                            }
+                        }).catch((err) => {
+                            reject(err)
+                        });
                     } else {
-                        reject("Bad request");
+                        reject('Failed while fetching Seven Days Forecast');
                     }
-                })
+                } catch (error) {
+                    reject(error)
+                }
             })
         },
     }

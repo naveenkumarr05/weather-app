@@ -1,17 +1,17 @@
 <template>
   <div>
     <h2>Weather Forecast</h2>
-    <SearchField/>
+    <search-field/>
   </div>
 </template>
 
 <script>
-import SearchField from '@/components/SearchField.vue'
+import SearchField from '../components/SearchField.vue'
 
 export default {
   name: 'home',
   components: {
-    SearchField,
+    SearchField
   },
 }
 </script>

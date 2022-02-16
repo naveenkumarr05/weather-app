@@ -70,7 +70,6 @@ export default {
   methods: {
     dateFormat(dt) {
       let day = new Date(dt * 1000);
-      console.log('cityWeatherReport', this.cityWeatherReport);
       return day.toLocaleDateString();
     },
     getTime(time) {

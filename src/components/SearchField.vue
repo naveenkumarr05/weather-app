@@ -14,9 +14,9 @@
         </span>
       </div>
     </form>
-    <DayForecastView />
+    <day-forecast-view />
     <div v-if="weatherReport">
-      <WeatherReport />
+      <weather-report />
     </div>
   </div>
 </template>
