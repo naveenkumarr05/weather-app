@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <button class="btn" @click="getCurrentWeather(true)">CURRENT</button>
-    <button class="btn" @click="getSevenDaysForecastReport(true)">
+    <button class="btn" @click="getCurrentWeather()">CURRENT</button>
+    <button class="btn" @click="getSevenDaysForecastReport()">
       7 DAYS FORECAST
     </button>
   </div>
@@ -12,30 +12,26 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "DayForecastView",
-  data() {
-    return {};
-  },
   computed: {
     ...mapGetters("weatherForecast", ["cityWeatherReport"]),
   },
   methods: {
     ...mapActions({
-      getCurrentWeatherReport: "weatherForecast/getCurrentWeatherReport",
       getSevenDaysForecast: "weatherForecast/getSevenDaysForecast",
     }),
-    getCurrentWeather(payload) {
+    getCurrentWeather() {
       if(this.cityWeatherReport == '') {
         alert('Please Enter city to search')
         return;
       }
       this.$store.commit("weatherForecast/SET_SHOW_POPUP", true);
-      this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", payload);
+      this.$store.commit("weatherForecast/SET_CURRENT_WEATHER_REPORT", true);
       this.$store.commit(
         "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
         false
       );
     },
-    getSevenDaysForecastReport(payload) {
+    getSevenDaysForecastReport() {
       if(this.cityWeatherReport == '') {
         alert('Please Enter city to search')
         return;
@@ -44,7 +40,7 @@ export default {
       this.$store.commit("weatherForecast/SET_SHOW_POPUP", false);
       this.$store.commit(
         "weatherForecast/SET_SEVEN_DAYS_FORECAST_REPORT",
-        payload
+        true
       );
       let coordinates = {
         lat: this.cityWeatherReport.coord.lat,

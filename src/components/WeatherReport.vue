@@ -8,7 +8,7 @@
       </h5>
       <h5>{{ cityWeatherReport.sys.country }}</h5>
     </div>
-    <div v-if="currentWeatherReport">
+    <div v-if="isCurrentWeatherReport">
       <img
         :src="`https://openweathermap.org/img/wn/${cityWeatherReport.weather[0].icon}@2x.png`"
         width="70"
@@ -37,7 +37,8 @@
         <a class="close" href="#">&times;</a>
         <div class="content">
           City Name: {{ cityInfo.name }}<br />
-          Sunrise Time: {{ getSunriseTime(cityInfo.sunrise) }}
+          Sunrise Time: {{ getTime(cityInfo.sunrise) }}<br>
+          Sunset Time: {{ getTime(cityInfo.sunset) }}
         </div>
       </div>
     </div>
@@ -52,13 +53,14 @@ export default {
       cityInfo: {
         name: "",
         sunrise: "",
+        sunset:""
       },
     };
   },
   name: "WeatherReport",
   computed: {
     ...mapGetters("weatherForecast", [
-      "currentWeatherReport",
+      "isCurrentWeatherReport",
       "cityWeatherReport",
       "sevenDaysWeatherReport",
       "setSevenDaysForecast",
@@ -68,16 +70,18 @@ export default {
   methods: {
     dateFormat(dt) {
       let day = new Date(dt * 1000);
+      console.log('cityWeatherReport', this.cityWeatherReport);
       return day.toLocaleDateString();
     },
-    getSunriseTime(sunrise) {
-      var s = new Date(sunrise).toLocaleTimeString("en-US");
+    getTime(time) {
+      var s = new Date(time).toLocaleTimeString("en-US");
       return s;
     },
     getCityInfo() {
       this.cityInfo = {
         name: this.cityWeatherReport.name,
         sunrise: this.cityWeatherReport.sys.sunrise,
+        sunset: this.cityWeatherReport.sys.sunset,
       };
     },
   },
